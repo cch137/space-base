@@ -1,12 +1,11 @@
+import { ORE_ASTERIOD_TYPES, PLANET_TYPES } from "./constants";
+import { getSvgURL } from "./svg-loader";
 import "./style.css";
 import Phaser from "phaser";
 
 const canvas = document.createElement("canvas");
 canvas.id = "app";
 document.querySelector("main")!.appendChild(canvas);
-
-const ORE_ASTERIOD_TYPES = 11;
-const PLANET_TYPES = 5;
 
 class GameScene extends Phaser.Scene {
   isDragging = false;
@@ -19,10 +18,11 @@ class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    for (let i = 0; i < ORE_ASTERIOD_TYPES; i++)
-      this.load.svg(`ore-astr-${i}`, `/assets/ore-asteroid-${i}.svg`);
-    for (let i = 0; i < PLANET_TYPES; i++)
-      this.load.svg(`planet-${i}`, `/assets/planet-${i}.svg`);
+    for (let i = 0; i < ORE_ASTERIOD_TYPES; i++) {
+      const color = Math.random() * 0xffffff;
+      const key = `ore-astr-${i}`;
+      this.load.svg(key, getSvgURL(key, color));
+    }
   }
 
   create() {
