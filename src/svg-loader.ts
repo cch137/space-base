@@ -35,7 +35,6 @@ export const getSvgURL = (key: string, color?: number | string) => {
         typeof color === "number" ? `#${Math.round(color).toString(16)}` : color
       }"`
     );
-    console.log(svg);
   }
   return URL.createObjectURL(
     new Blob([svg], { type: "image/svg+xml;charset=utf-8" })
